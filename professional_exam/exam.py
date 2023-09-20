@@ -69,7 +69,7 @@ def _render_questions(questions, index=False):
                 button_disabled = False
                 radio_disabled = False
             
-            print(f'question: {question[0]}')
+            # print(f'question: {question[0]}')
             # st.markdown()
             st.markdown(question[0][0], unsafe_allow_html=True)
             
@@ -115,9 +115,9 @@ def parse_questions(forms):
         question = form.find_all('div', class_='ud-text-bold mc-quiz-question--question-prompt--2_dlz rt-scaffolding')
         answer  = form.find_all('div', class_='mc-quiz-answer--answer-inner--3WH_P')
         explanation = form.find_all('div', class_="mc-quiz-question--explanation--Q5KHQ")
-        print(f'question: {question}')
-        print(f'answer: {answer}')
-        print(f'explanation: {explanation}')
+        # print(f'question: {question}')
+        # print(f'answer: {answer}')
+        # print(f'explanation: {explanation}')
         html.append((question, answer, explanation))
     return html
 
@@ -143,7 +143,8 @@ if st.session_state['initial_read']:
     # Process and format the strings
     # formatted_strings = [textwrap.fill(string, width=80) for string in questions['question']]
 
-    random.shuffle(html)
+    html = random.sample(html, k = 10)
+    print(f'len(html): {len(html)}')
     st.session_state['questions'] = html
 
     st.session_state['initial_read'] = False
